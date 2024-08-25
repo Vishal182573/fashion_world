@@ -31,14 +31,13 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-800 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
-      <h2 className="text-2xl font-bold mb-6 text-center text-blue-500">Admission Query</h2>
+    <form onSubmit={handleSubmit} className="bg-gray-100 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
       
       <div className="mb-4">
-        <div className="flex items-center bg-gray-700 rounded">
-          <FaUser className="text-gray-400 ml-3" />
+        <div className="flex items-center bg-gray-100 rounded">
+          <FaUser className="text-gray-800 ml-3" />
           <input
-            className="bg-transparent border-0 rounded w-full py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="bg-transparent border-0 rounded w-full py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-purple-500"
             type="text"
             name="name"
             placeholder="Enter Name"
@@ -49,10 +48,10 @@ const Form = () => {
       </div>
 
       <div className="mb-4">
-        <div className="flex items-center bg-gray-700 rounded">
-          <FaEnvelope className="text-gray-400 ml-3" />
+        <div className="flex items-center bg-gray-100 rounded">
+          <FaEnvelope className="text-gray-800 ml-3" />
           <input
-            className="bg-transparent border-0 rounded w-full py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="bg-transparent border-0 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
             type="email"
             name="email"
             placeholder="Enter Email Address"
@@ -63,10 +62,10 @@ const Form = () => {
       </div>
 
       <div className="mb-4">
-        <div className="flex items-center bg-gray-700 rounded">
-          <FaPhone className="text-gray-400 ml-3" />
+        <div className="flex items-center bg-gray-100 rounded">
+          <FaPhone className="text-gray-800 ml-3" />
           <input
-            className="bg-transparent border-0 rounded w-full py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="bg-transparent border-0 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
             type="tel"
             name="mobile"
             placeholder="Enter Mobile Number"
@@ -77,10 +76,10 @@ const Form = () => {
       </div>
 
       <div className="mb-4">
-        <div className="flex items-center bg-gray-700 rounded">
-          <FaMapMarkerAlt className="text-gray-400 ml-3" />
+        <div className="flex items-center bg-gray-100 rounded">
+          <FaMapMarkerAlt className="text-gray-800 ml-3" />
           <input
-            className="bg-transparent border-0 rounded w-full py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="bg-transparent border-0 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
             type="text"
             name="address"
             placeholder="Enter Address"
@@ -91,10 +90,10 @@ const Form = () => {
       </div>
 
       <div className="mb-4">
-        <div className="flex items-center bg-gray-700 rounded">
-          <FaBook className="text-gray-400 ml-3" />
+        <div className="flex items-center bg-gray-100 rounded">
+          <FaBook className="text-gray-800 ml-3" />
           <select
-            className="bg-transparent border-0 rounded w-full py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="bg-transparent border-0 rounded w-full py-2 px-3  focus:outline-none focus:ring-2 focus:ring-purple-500"
             name="course"
             onChange={handleChange}
             required
@@ -106,10 +105,10 @@ const Form = () => {
       </div>
 
       <div className="mb-6">
-        <div className="flex items-center bg-gray-700 rounded">
-          <FaListAlt className="text-gray-400 ml-3" />
+        <div className="flex items-center bg-gray-100 rounded">
+          <FaListAlt className="text-gray-800 ml-3" />
           <select
-            className="bg-transparent border-0 rounded w-full py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="bg-transparent border-0 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
             name="specialization"
             onChange={handleChange}
             required
@@ -122,7 +121,7 @@ const Form = () => {
 
       <div className="flex items-center justify-center">
         <button
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
+          className="bg-blue-500 hover:bg-blue-400 font-bold py-2 px-4 rounded text-white focus:outline-none focus:shadow-outline transition duration-300"
           type="submit"
         >
           SUBMIT

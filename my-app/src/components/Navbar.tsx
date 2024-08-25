@@ -2,68 +2,70 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaHome, FaInfoCircle, FaEnvelope, FaPencilAlt, FaStore } from 'react-icons/fa';
+import { FaHome, FaInfoCircle, FaEnvelope, FaPencilAlt, FaStore, FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="shadow-lg sticky top-0 bg-gradient-to-r from-zinc-800 to-zinc-950 z-50">
+    <nav className="shadow-lg sticky top-0 bg-white z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
+        <div className="flex items-center justify-between h-20">
+          <motion.div 
+            className="flex items-center"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <Link href="/" className="flex-shrink-0">
-              <span className="font-bold text-white text-2xl">LOGO</span>
+              <span className="font-bold text-pink-600 text-3xl">LOGO</span>
             </Link>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+            <div className="hidden md:block ml-10">
+              <div className="flex items-baseline space-x-4">
                 <NavLink href="/" icon={<FaHome />}>Home</NavLink>
                 <NavLink href="/about" icon={<FaInfoCircle />}>About</NavLink>
-                <NavLink href="/store" icon={<FaStore/>}>Clothing Store</NavLink>
+                <NavLink href="/store" icon={<FaStore/>}>Store</NavLink>
                 <NavLink href="/apply" icon={<FaEnvelope />}>Contact</NavLink>
               </div>
             </div>
-          </div>
-          <div className="hidden md:block">
-            <Link href="/apply" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          </motion.div>
+          <motion.div 
+            className="hidden md:block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Link href="/apply" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition duration-300">
               <FaPencilAlt className="mr-2" />
               Apply Now
             </Link>
-          </div>
+          </motion.div>
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-purple-800 focus:ring-white"
+              className="inline-flex items-center justify-center p-2 rounded-md text-pink-600 hover:text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-500 transition duration-300"
             >
               <span className="sr-only">Open main menu</span>
-              {!isOpen ? (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              ) : (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              )}
+              {!isOpen ? <FaBars className="block h-6 w-6" /> : <FaTimes className="block h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -100 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -20 }}
         transition={{ duration: 0.3 }}
-        className={`${isOpen ? 'block' : 'hidden'} md:hidden`}
+        className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-white`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <MobileNavLink href="/" icon={<FaHome />}>Home</MobileNavLink>
           <MobileNavLink href="/about" icon={<FaInfoCircle />}>About</MobileNavLink>
-          <MobileNavLink href="/store" icon={<FaStore/>}>Clothing Store</MobileNavLink>
+          <MobileNavLink href="/store" icon={<FaStore/>}>Store</MobileNavLink>
           <MobileNavLink href="/apply" icon={<FaEnvelope />}>Contact</MobileNavLink>
         </div>
-        <div className="pt-4 pb-3 border-t border-purple-700">
-          <Link href="/apply" className="block w-full text-center px-5 py-3 text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md">
+        <div className="pt-4 pb-3 border-t border-gray-200">
+          <Link href="/apply" className="block w-full text-center px-5 py-3 text-base font-medium text-white bg-pink-600 hover:bg-pink-700 rounded-md transition duration-300">
             Apply Now
           </Link>
         </div>
@@ -73,14 +75,14 @@ const Navbar: React.FC = () => {
 };
 
 const NavLink: React.FC<{ href: string; icon: React.ReactNode; children: React.ReactNode }> = ({ href, icon, children }) => (
-  <Link href={href} className="text-white hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center transition duration-300">
+  <Link href={href} className="text-gray-600 hover:bg-pink-100 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium flex items-center transition duration-300">
     {icon}
     <span className="ml-2">{children}</span>
   </Link>
 );
 
 const MobileNavLink: React.FC<{ href: string; icon: React.ReactNode; children: React.ReactNode }> = ({ href, icon, children }) => (
-  <Link href={href} className="text-white hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-base font-medium flex items-center">
+  <Link href={href} className="text-gray-600 hover:bg-pink-100 hover:text-pink-600  px-3 py-2 rounded-md text-base font-medium flex items-center transition duration-300">
     {icon}
     <span className="ml-2">{children}</span>
   </Link>

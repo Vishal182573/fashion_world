@@ -1,263 +1,215 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-import Form from '@/components/Form';
+import Image from 'next/image';
+import { FaArrowRight } from 'react-icons/fa';
 import Carousel from '@/components/Carousel';
-import { IMG1, IMG2, IMG3, IMG4 } from '../../public';
-import { FaGraduationCap, FaPalette, FaLaptop, FaBook, FaUsers, FaCalendarAlt, FaBriefcase, FaGlobe, FaMedal, FaHandshake, FaChalkboardTeacher, FaUserTie, FaFlask, FaTshirt, FaLaptopCode, FaGlobeAmericas, FaProjectDiagram, FaMicrophone, FaPlane, FaTrophy, FaSuitcase, FaNewspaper, FaLeaf, FaUserGraduate } from 'react-icons/fa';
-import PricingTable from '@/components/PricingTable';
+import { IMG1, IMG2, IMG3, IMG4, IMG5, IMG6, IMG7, IMG8, IMG9 } from '../../public';
 
 const HomePage: React.FC = () => {
-  const carouselImages = [IMG1, IMG2, IMG3, IMG4];
+  const carouselImages = [IMG1, IMG2, IMG3, IMG4, IMG5, IMG6, IMG7];
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8 }
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-black text-gray-100 font-sans">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-100 to-white text-gray-800 font-sans">
       <main className="flex-grow">
         <Carousel images={carouselImages} />
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+        
+        <motion.div
+          {...fadeInUp}
           className="max-w-7xl mx-auto px-4 py-12"
         >
           <div className="text-center mb-16">
-            <h1 className="text-6xl font-black text-purple-400 mb-4 font-serif">World School of Fashion</h1>
-            <p className="text-3xl text-purple-300 font-light">Where Creativity Meets Innovation</p>
+            <motion.h1 
+              className="text-6xl font-black text-indigo-600 mb-4 font-serif"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              World School of Fashion
+            </motion.h1>
+            <motion.p 
+              className="text-3xl text-indigo-400 font-light"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              Where Creativity Meets Innovation
+            </motion.p>
           </div>
 
-          <ProgramsSection />
-          <FacilitiesSection />
-          <IndustryPartnershipsSection />
-          <PricingTable/>
-          <AwardsSection />
+          <FeaturedPrograms />
+          <TrendingStyles />
+          <DesignProcess />
+
+          <motion.div 
+            {...fadeInUp} 
+            className="text-center mb-16 bg-indigo-100 py-12 rounded-lg shadow-inner"
+          >
+            <h2 className="text-4xl font-bold mb-8 font-serif text-indigo-600">Join Our Creative Community</h2>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 shadow-lg"
+            >
+              Apply Now
+            </motion.button>
+          </motion.div>
+
+          <FashionShowcase />
         </motion.div>
       </main>
     </div>
   );
 };
 
-const SectionTitle: React.FC<{ icon: React.ReactNode; title: string }> = ({ icon, title }) => (
-  <h2 className="text-4xl font-bold text-indigo-500 mb-8 flex items-center">
-    {icon}
-    <span className="ml-3 font-serif">{title}</span>
-  </h2>
-);
-
-const ProgramsSection: React.FC = () => (
-  <motion.section
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+const FeaturedPrograms: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     transition={{ duration: 0.8 }}
     className="mb-16"
   >
-    <SectionTitle icon={<FaGraduationCap className="text-indigo-300" />} title="Our Programs" />
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {programsData.map((program, index) => (
+    <h2 className="text-4xl font-bold text-center mb-8 font-serif text-indigo-600">Featured Programs</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {[
+        { title: "Fashion Design", image: IMG1 },
+        { title: "Textile Innovation", image: IMG2 },
+        { title: "Sustainable Fashion", image: IMG3 },
+      ].map((program, index) => (
         <motion.div
           key={index}
+          className="relative overflow-hidden rounded-lg h-96 group cursor-pointer"
           whileHover={{ scale: 1.05 }}
-          className={`bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300 border-t-4 border-${program.color}-500`}
         >
-          <h3 className={`text-2xl font-semibold mb-3 text-${program.color}-400`}>{program.title}</h3>
-          <p className="text-gray-300">{program.description}</p>
+          <Image
+            src={program.image}
+            alt={program.title}
+            layout="fill"
+            objectFit="cover"
+            className="transition-transform duration-300 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-indigo-900 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <h3 className="text-2xl font-bold mb-2">{program.title}</h3>
+            <p className="mb-4">Explore the cutting-edge techniques and theories in {program.title.toLowerCase()}.</p>
+            <span className="inline-flex items-center text-indigo-200 hover:text-white">
+              Learn More <FaArrowRight className="ml-2" />
+            </span>
+          </div>
         </motion.div>
       ))}
     </div>
-  </motion.section>
+  </motion.div>
 );
 
-const FacilitiesSection: React.FC = () => (
-  <motion.section
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+const TrendingStyles: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     transition={{ duration: 0.8 }}
     className="mb-16"
   >
-    <SectionTitle icon={<FaPalette className="text-indigo-300" />} title="Our Facilities" />
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {facilitiesData.map((facility, index) => (
+    <h2 className="text-4xl font-bold text-center mb-8 font-serif text-indigo-600">Trending Styles</h2>
+    <div className="relative h-96 overflow-hidden rounded-lg">
+      <Image src={IMG4} alt="Trending Styles" layout="fill" objectFit="cover" />
+      <div className="absolute inset-0 bg-indigo-900 bg-opacity-50 flex items-center justify-center">
         <motion.div
-          key={index}
-          whileHover={{ scale: 1.05 }}
-          className={`bg-gradient-to-r from-slate-700 to-slate-900 rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300 border-t-4 border-${facility.color}-500`}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-white text-center"
         >
-          <h3 className={`text-2xl font-semibold mb-3 text-${facility.color}-400 flex items-center`}>
-            <facility.icon className={`mr-2 text-${facility.color}-300`} />
-            {facility.title}
-          </h3>
-          <p className="text-gray-300">{facility.description}</p>
+          <h3 className="text-4xl font-bold mb-4">Summer Collection 2024</h3>
+          <p className="text-xl mb-6">Discover the hottest trends of the season</p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white text-indigo-600 font-bold py-2 px-6 rounded-full"
+          >
+            View Collection
+          </motion.button>
         </motion.div>
-      ))}
+      </div>
     </div>
-  </motion.section>
+  </motion.div>
 );
 
-const IndustryPartnershipsSection: React.FC = () => (
-  <motion.section
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+const DesignProcess: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className="mb-16 py-16 bg-gray-100"
+  >
+    <h2 className="text-5xl font-bold text-center mb-12 font-serif text-indigo-600">Our Design Process</h2>
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="flex flex-col md:flex-row items-center justify-between">
+        {[
+          { step: "Ideation", image: IMG5, description: "Brainstorming creative concepts" },
+          { step: "Sketching", image: IMG6, description: "Bringing ideas to life on paper" },
+          { step: "Prototyping", image: IMG7, description: "Crafting initial designs" },
+          { step: "Production", image: IMG8, description: "Bringing designs to reality" },
+        ].map((item, index) => (
+          <motion.div
+            key={index}
+            className="relative w-full md:w-1/4 h-80 m-2 group overflow-hidden rounded-xl shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <Image src={item.image} alt={item.step} layout="fill" objectFit="cover" className="rounded-xl" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-indigo-600 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex flex-col items-center justify-end p-6">
+              <h3 className="text-white text-2xl font-bold mb-2">{item.step}</h3>
+              <p className="text-white text-center">{item.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+const FashionShowcase: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     transition={{ duration: 0.8 }}
     className="mb-16"
   >
-    <SectionTitle icon={<FaBriefcase className="text-indigo-300" />} title="Industry Partnerships" />
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {partnershipsData.map((partnership, index) => (
+    <h2 className="text-4xl font-bold text-center mb-8 font-serif text-indigo-500">Fashion Showcase</h2>
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {[IMG1, IMG2, IMG3, IMG4, IMG5, IMG6].map((img, index) => (
         <motion.div
           key={index}
-          whileHover={{ scale: 1.05 }}
-          className={`bg-gradient-to-r from-slate-700 to-red-900 rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300 border-t-4 border-${partnership.color}-500`}
+          className="relative overflow-hidden rounded-lg h-48 md:h-64"
+          // whileHover={{ scale: 1.5,}}
+          transition={{ duration: 0.5 }}
         >
-          <h3 className={`text-2xl font-semibold mb-3 text-${partnership.color}-400 flex items-center`}>
-            <partnership.icon className={`mr-2 text-${partnership.color}-300`} />
-            {partnership.title}
-          </h3>
-          <p className="text-gray-300">{partnership.description}</p>
+          <Image
+            src={img}
+            alt={`Fashion Showcase ${index + 1}`}
+            layout="fill"
+            objectFit="cover"
+          />
+          <motion.div
+            className="absolute inset-0 bg-indigo-500 bg-opacity-60 flex items-center justify-center p-4 text-white text-center"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1}}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-lg font-bold">Discover the story behind this stunning design</p>
+          </motion.div>
         </motion.div>
       ))}
     </div>
-  </motion.section>
+  </motion.div>
 );
 
-const AwardsSection: React.FC = () => (
-  <motion.section
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    className="mb-16"
-  >
-    <SectionTitle icon={<FaMedal className="text-indigo-300" />} title="Awards & Recognitions" />
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {awardsData.map((award, index) => (
-        <motion.div
-          key={index}
-          whileHover={{ scale: 1.05 }}
-          className={`bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300 border-t-4 border-${award.color}-500`}
-        >
-          <h3 className={`text-2xl font-semibold mb-3 text-${award.color}-400`}>{award.title}</h3>
-          <p className="text-gray-300">{award.description}</p>
-        </motion.div>
-      ))}
-    </div>
-  </motion.section>
-);
-
-const programsData = [
-  {
-    title: 'Fashion Design',
-    color: 'yellow',
-    description: 'Explore the world of fashion and design. Create stunning collections and learn from industry experts.'
-  },
-  {
-    title: 'Graphic Design',
-    color: 'green',
-    description: 'Create visually stunning graphics and illustrations. Master digital tools and techniques.'
-  },
-  {
-    title: 'Interior Design',
-    color: 'blue',
-    description: 'Transform spaces with innovative design solutions. Learn about materials, lighting, and spatial planning.'
-  },
-  {
-    title: 'Product Design',
-    color: 'red',
-    description: 'Design innovative products that solve real-world problems. Learn about ergonomics, materials, and manufacturing processes.'
-  },
-  {
-    title: 'Textile Design',
-    color: 'indigo',
-    description: 'Explore the art of fabric design and creation. Learn about weaving, printing, and sustainable textile practices.'
-  },
-  {
-    title: 'Jewelry Design',
-    color: 'pink',
-    description: 'Create stunning pieces of wearable art. Master metalworking techniques and gemstone setting.'
-  }
-];
-
-const facilitiesData = [
-  {
-    title: 'State-of-the-art Studios',
-    icon: FaLaptop,
-    color: 'pink',
-    description: 'Access cutting-edge equipment and software for your projects. From 3D printers to fashion labs,we have got it all.'
-  },
-  {
-    title: 'Design Library',
-    icon: FaBook,
-    color: 'blue',
-    description: 'Extensive collection of design books, magazines, and digital resources. Stay updated with the latest trends and techniques.'
-  },
-  {
-    title: 'Exhibition Spaces',
-    icon: FaPalette,
-    color: 'green',
-    description: 'Showcase your work in our professional galleries and exhibition areas. Host your own shows and participate in curated exhibitions.'
-  },
-  {
-    title: 'Digital Fabrication Lab',
-    icon: FaLaptop,
-    color: 'yellow',
-    description: 'Bring your designs to life with 3D printing, laser cutting, and CNC machines. Learn to prototype and produce your creations.'
-  }
-];
-
-const partnershipsData = [
-  {
-    title: 'Internship Programs',
-    icon: FaUserTie,
-    color: 'blue',
-    description: 'Gain real-world experience through internships with top fashion and design companies.'
-  },
-  {
-    title: 'Sponsored Projects',
-    icon: FaProjectDiagram,
-    color: 'green',
-    description: 'Work on industry-sponsored projects and competitions to solve real design challenges.'
-  },
-  {
-    title: 'Guest Lectures',
-    icon: FaMicrophone,
-    color: 'yellow',
-    description: 'Learn from industry professionals through guest lectures and workshops.'
-  },
-  {
-    title: 'Networking Events',
-    icon: FaHandshake,
-    color: 'pink',
-    description: 'Connect with potential employers at our career fairs and networking events.'
-  }
-];
-
-const awardsData = [
-  {
-    title: 'Best Design School',
-    color: 'yellow',
-    description: 'Ranked as the top design school in the country for three consecutive years.'
-  },
-  {
-    title: 'Innovative Curriculum Award',
-    color: 'pink',
-    description: 'Recognized for our forward-thinking and industry-relevant programs.'
-  },
-  {
-    title: 'Alumni Success',
-    color: 'green',
-    description: 'Our graduates are leading in top fashion houses, design studios, and global brands.'
-  },
-  {
-    title: 'Sustainability Leadership',
-    color: 'blue',
-    description: 'Awarded for our commitment to sustainable design practices and education.'
-  },
-  {
-    title: 'Excellence in Research',
-    color: 'indigo',
-    description: 'Celebrated for our contributions to design research and innovation.'
-  },
-  {
-    title: 'Student Achievements',
-    color: 'red',
-    description: 'Our students have won numerous awards in national and international design competitions.'
-  }
-];
 export default HomePage;

@@ -5,39 +5,39 @@ import { FaGraduationCap, FaPalette, FaUsers, FaGlobe } from 'react-icons/fa';
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="bg-gradient-to-b from-zinc-950 to-zinc-900 min-h-screen py-12">
+    <div className="bg-gradient-to-b from-gray-100 to-white min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h1 className="text-4xl font-extrabold text-gray-300 sm:text-5xl md:text-6xl">
+          <h1 className="text-5xl font-extrabold text-gray-800 sm:text-6xl md:text-7xl">
             About <span className="text-indigo-600">WSF</span>
           </h1>
-          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+          <p className="mt-3 max-w-md mx-auto text-xl text-gray-600 sm:text-2xl md:mt-5 md:max-w-3xl">
             World School of Fashion: Shaping the Future of Fashion
           </p>
         </motion.div>
 
-        <div className="mt-10">
+        <div className="mt-16">
           <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-            {featuresData.map((feature) => (
+            {featuresData.map((feature, index) => (
               <motion.div
                 key={feature.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative bg-white p-6 rounded-xl shadow-lg"
               >
                 <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <div className="absolute flex items-center justify-center h-16 w-16 rounded-md bg-indigo-500 text-white">
                     {feature.icon}
                   </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-200">{feature.name}</p>
+                  <p className="ml-20 text-xl leading-6 font-medium text-gray-900">{feature.name}</p>
                 </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">{feature.description}</dd>
+                <dd className="mt-2 ml-20 text-base text-gray-500">{feature.description}</dd>
               </motion.div>
             ))}
           </dl>
@@ -47,10 +47,10 @@ const AboutUs: React.FC = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-20 text-center"
+          className="mt-20 text-center bg-indigo-100 p-8 rounded-xl shadow-inner"
         >
-          <h2 className="text-3xl font-extrabold text-gray-300">Our Mission</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+          <h2 className="text-4xl font-extrabold text-indigo-600 mb-4">Our Mission</h2>
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-700">
             To inspire and empower the next generation of fashion innovators through cutting-edge education, industry partnerships, and a global perspective.
           </p>
         </motion.div>
