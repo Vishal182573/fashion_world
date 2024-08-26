@@ -77,7 +77,7 @@ const ContactPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <p>For any inquiries, please don't hesitate to reach out to us using the contact information above.</p>
+          <p>For any inquiries, please don not hesitate to reach out to us using the contact information above.</p>
           <p className="mt-2">We look forward to hearing from you!</p>
         </motion.div>
       </div>
