@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
                 <NavLink href="/" icon={<FaHome />}>Home</NavLink>
                 <NavLink href="/about" icon={<FaInfoCircle />}>About</NavLink>
                 <NavLink href="/store" icon={<FaStore/>}>Store</NavLink>
-                <NavLink href="/apply" icon={<FaEnvelope />}>Contact</NavLink>
+                <NavLink href="/contact" icon={<FaEnvelope />}>Contact</NavLink>
               </div>
             </div>
           </motion.div>
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
           <MobileNavLink href="/" icon={<FaHome />}>Home</MobileNavLink>
           <MobileNavLink href="/about" icon={<FaInfoCircle />}>About</MobileNavLink>
           <MobileNavLink href="/store" icon={<FaStore/>}>Store</MobileNavLink>
-          <MobileNavLink href="/apply" icon={<FaEnvelope />}>Contact</MobileNavLink>
+          <MobileNavLink href="/contact" icon={<FaEnvelope />}>Contact</MobileNavLink>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-200">
           <Link href="/apply" className="block w-full text-center px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 rounded-md transition duration-300 shadow-inner">
