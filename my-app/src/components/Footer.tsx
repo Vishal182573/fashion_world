@@ -25,8 +25,8 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold text-gray-800 mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li><Link href="/about" className="hover:text-pink-600 transition duration-300">About Us</Link></li>
-              <li><Link href="/programs" className="hover:text-pink-600 transition duration-300">Programs</Link></li>
-              <li><Link href="/admissions" className="hover:text-pink-600 transition duration-300">Admissions</Link></li>
+              <li><Link href="/store" className="hover:text-pink-600 transition duration-300">store</Link></li>
+              <li><Link href="/apply" className="hover:text-pink-600 transition duration-300">Admissions</Link></li>
               <li><Link href="/contact" className="hover:text-pink-600 transition duration-300">Contact</Link></li>
             </ul>
           </motion.div>

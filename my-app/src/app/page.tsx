@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
 import Carousel from '@/components/Carousel';
 import { IMG1, IMG2, IMG3, IMG4, IMG5, IMG6, IMG7, IMG8, IMG9 } from '../../public';
+import Link from 'next/link';
 
 const HomePage: React.FC = () => {
-  const carouselImages = [IMG1, IMG2, IMG3, IMG4, IMG5, IMG6, IMG7];
+  const carouselImages = [IMG1, IMG2, IMG3, IMG4];
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -52,13 +53,15 @@ const HomePage: React.FC = () => {
             className="text-center mb-16 bg-indigo-100 py-12 rounded-lg shadow-inner"
           >
             <h2 className="text-4xl font-bold mb-8 font-serif text-indigo-600">Join Our Creative Community</h2>
+            <Link href={"/apply"}>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 shadow-lg"
-            >
+              >
               Apply Now
             </motion.button>
+              </Link>
           </motion.div>
 
           <FashionShowcase />
@@ -98,9 +101,6 @@ const FeaturedPrograms: React.FC = () => (
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <h3 className="text-2xl font-bold mb-2">{program.title}</h3>
             <p className="mb-4">Explore the cutting-edge techniques and theories in {program.title.toLowerCase()}.</p>
-            <span className="inline-flex items-center text-indigo-200 hover:text-white">
-              Learn More <FaArrowRight className="ml-2" />
-            </span>
           </div>
         </motion.div>
       ))}
@@ -127,13 +127,15 @@ const TrendingStyles: React.FC = () => (
         >
           <h3 className="text-4xl font-bold mb-4">Summer Collection 2024</h3>
           <p className="text-xl mb-6">Discover the hottest trends of the season</p>
+          <Link href={"/store"}>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-white text-indigo-600 font-bold py-2 px-6 rounded-full"
-          >
+            >
             View Collection
           </motion.button>
+            </Link>
         </motion.div>
       </div>
     </div>
@@ -189,8 +191,10 @@ const FashionShowcase: React.FC = () => (
         <motion.div
           key={index}
           className="relative overflow-hidden rounded-lg h-48 md:h-64"
-          // whileHover={{ scale: 1.5,}}
-          transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5}}
         >
           <Image
             src={img}

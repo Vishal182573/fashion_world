@@ -7,6 +7,7 @@ import IMG6 from "./images/img6.jpg"
 import IMG7 from "./images/img7.jpg"
 import IMG8 from "./images/img8.jpg"
 import IMG9 from "./images/img9.jpg"
+import LOGO from "./images/logo.jpg"
 
 export{
     IMG1,
@@ -18,4 +19,5 @@ export{
     IMG7,
     IMG8,
     IMG9,
+    LOGO,
 }
